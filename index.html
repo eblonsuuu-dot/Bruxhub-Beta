@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -117,7 +118,6 @@
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     }
 
-    /* Primary Telegram Button in Header */
     .btn-telegram-header {
       background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
       color: #ffffff;
@@ -265,7 +265,6 @@
       font-size: 1rem;
     }
 
-    /* Filter & Search Bar */
     .filter-bar {
       display: flex;
       flex-direction: column;
@@ -339,11 +338,11 @@
       box-shadow: 0 4px 12px var(--purple-glow);
     }
 
-    /* Grid Layout */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 24px;
+      min-height: 200px;
     }
 
     .card {
@@ -696,7 +695,6 @@
           <li><a href="#faq" class="nav-link">О проекте</a></li>
         </ul>
 
-        <!-- ONLY TELEGRAM BUTTON ON THE SITE -->
         <a href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer" class="btn-telegram-header">
           <i class="fa-brands fa-telegram"></i> Подписаться на канал
         </a>
@@ -729,7 +727,6 @@
       <p class="section-desc">Выбирай интересующие игровые проекты и будь в курсе всех обновлений</p>
     </div>
 
-    <!-- Filters & Search -->
     <div class="filter-bar">
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -744,9 +741,8 @@
       </div>
     </div>
 
-    <!-- Cards Grid -->
     <div class="grid-container" id="catalogGrid">
-      <!-- Dynamic Project Cards rendered via JavaScript -->
+      <!-- Dynamic Project Cards -->
     </div>
   </section>
 
@@ -797,4 +793,10 @@
           <i class="fa-solid fa-chevron-down faq-icon"></i>
         </div>
         <div class="faq-body">
-          <p>Нет, BRUXHUB являе
+          <p>Нет, BRUXHUB является независимой фан-площадкой и сообществом, созданным для фанатов мобильных шутеров и приватных модификаций.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal-over
