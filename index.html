@@ -1,802 +1,155 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BRUXHUB — Твой Игровой Hub</title>
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Font: Inter & Orbitron -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-dark: #08070d;
-      --bg-surface: #100f1a;
-      --card-bg: #151324;
-      --card-border: rgba(168, 85, 247, 0.18);
-      --accent-purple: #9333ea;
-      --accent-pink: #ec4899;
-      --neon-glow: rgba(236, 72, 153, 0.4);
-      --purple-glow: rgba(147, 51, 234, 0.4);
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(16, 15, 26, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-badge {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #ffffff;
-      box-shadow: 0 0 15px var(--neon-glow);
-    }
-
-    .brand-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
-    }
-
-    .nav-right-group {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: var(--transition);
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: #ffffff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-
-    .btn-telegram-header {
-      background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
-      color: #ffffff;
-      padding: 10px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 18px var(--purple-glow);
-      transition: var(--transition);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn-telegram-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px var(--neon-glow);
-      color: #ffffff;
-    }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .hero {
-      position: relative;
-      padding: 120px 24px 80px 24px;
-      text-align: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, rgba(147, 51, 234, 0.15) 50%, rgba(0,0,0,0) 70%);
-      filter: blur(60px);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 20px;
-      background: rgba(147, 51, 234, 0.12);
-      border: 1px solid rgba(147, 51, 234, 0.3);
-      color: #c084fc;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 30%, #f472b6 70%, #a855f7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      max-width: 900px;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.15rem;
-      max-width: 650px;
-      margin-bottom: 36px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
-      color: #ffffff;
-      padding: 14px 28px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 20px var(--purple-glow);
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px var(--neon-glow);
-    }
-
-    .section-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #ffffff, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .section-desc {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    .filter-bar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-
-    @media (min-width: 768px) {
-      .filter-bar {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    .search-box {
-      position: relative;
-      flex-grow: 1;
-      max-width: 450px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 12px 18px 12px 46px;
-      border-radius: 12px;
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: #ffffff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .search-input:focus {
-      border-color: var(--accent-purple);
-      box-shadow: 0 0 15px var(--purple-glow);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-    }
-
-    .category-chips {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .chip-btn {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: var(--transition);
-    }
-
-    .chip-btn.active, .chip-btn:hover {
-      background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-      color: #ffffff;
-      border-color: transparent;
-      box-shadow: 0 4px 12px var(--purple-glow);
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 24px;
-      min-height: 200px;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(236, 72, 153, 0.4);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .card-icon-wrapper {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2));
-      border: 1px solid rgba(236, 72, 153, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      color: #ec4899;
-      flex-shrink: 0;
-    }
-
-    .card-title-group h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 2px;
-    }
-
-    .card-badge {
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      background: rgba(147, 51, 234, 0.15);
-      color: #c084fc;
-      border-radius: 6px;
-      font-weight: 600;
-      display: inline-block;
-    }
-
-    .card-desc {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-      line-height: 1.5;
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .features-list li {
-      font-size: 0.85rem;
-      color: #d1d5db;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .features-list li i {
-      color: #ec4899;
-      font-size: 0.75rem;
-    }
-
-    .card-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-download {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-      transition: var(--transition);
-    }
-
-    .btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
-      color: #ffffff;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      width: 100%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: var(--transition);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(147, 51, 234, 0.2);
-      border-color: var(--accent-purple);
-    }
-
-    .empty-box {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 48px 24px;
-      background: rgba(21, 19, 36, 0.5);
-      border: 1px dashed var(--card-border);
-      border-radius: 16px;
-      color: var(--text-muted);
-    }
-
-    .empty-box i {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      color: var(--accent-purple);
-    }
-
-    .faq-accordion {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .faq-header {
-      padding: 16px 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: #ffffff;
-      transition: var(--transition);
-    }
-
-    .faq-header:hover {
-      background: rgba(147, 51, 234, 0.1);
-    }
-
-    .faq-body {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-item.active .faq-body {
-      padding: 0 20px 16px 20px;
-      max-height: 150px;
-    }
-
-    .faq-item.active .faq-icon {
-      transform: rotate(180deg);
-    }
-
-    .faq-icon {
-      transition: var(--transition);
-      color: var(--accent-pink);
-    }
-
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      pointer-events: none;
-      transition: var(--transition);
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-content {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      max-width: 500px;
-      width: 100%;
-      padding: 28px;
-      position: relative;
-      transform: translateY(20px);
-      transition: var(--transition);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    .modal-close:hover {
-      color: #ffffff;
-    }
-
-    footer {
-      background: var(--bg-surface);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 40px 24px 24px 24px;
-      margin-top: 60px;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      text-align: center;
-    }
-
-    .footer-text {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-attribution {
-      color: #a78bfa;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .nav-menu {
-        position: fixed;
-        top: 73px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-surface);
-        flex-direction: column;
-        padding: 24px;
-        gap: 20px;
-        border-bottom: 1px solid var(--card-border);
-        transform: translateY(-150%);
-        transition: var(--transition);
-      }
-
-      .nav-menu.open {
-        transform: translateY(0);
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08070d">
+<title>BRUXHUB — Игровой Hub</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08070d;--card:#151324;--purple:#9333ea;--pink:#ec4899;--muted:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{background:var(--bg);color:#f3f4f6;font-family:Inter,Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:10;background:#100f1af5;border-bottom:1px solid #ffffff18}
+nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font:900 24px Orbitron;color:#d8b4fe;text-decoration:none}
+nav ul{display:flex;gap:20px;list-style:none}
+nav ul a{color:#ccc;text-decoration:none}
+a{color:inherit}
+.telegram,.primary{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:11px 16px;border:0;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--pink));color:white;text-decoration:none;font-weight:700}
+.hero{text-align:center;padding:90px 20px 60px;max-width:1000px;margin:auto}
+.hero h1{font:900 clamp(28px,5vw,52px) Orbitron;color:#e9b5ff;margin:20px 0}
+.hero p,.muted{color:var(--muted)}
+.hero p{margin:0 auto 25px;max-width:650px}
+.section{max-width:1200px;margin:auto;padding:55px 20px}
+.heading{text-align:center;margin-bottom:30px}
+.heading h2{font:800 clamp(24px,4vw,34px) Orbitron;color:#d8b4fe;margin-bottom:10px}
+.filters{display:flex;flex-direction:column;gap:15px;margin-bottom:25px}
+input[type=search]{width:100%;padding:14px;border-radius:10px;background:var(--card);border:1px solid #9333ea66;color:white;font-size:16px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:5px}
+.chip{white-space:nowrap;padding:9px 14px;border-radius:22px;background:var(--card);border:1px solid #9333ea55;color:#ccc;cursor:pointer}
+.chip.active{background:linear-gradient(135deg,var(--purple),var(--pink));color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px}
+.card{background:var(--card);border:1px solid #9333ea44;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.card-icon{font-size:30px;color:#ec4899}
+.card h3{font:700 18px Orbitron}
+.badge{display:inline-block;background:#9333ea33;color:#d8b4fe;padding:3px 8px;border-radius:6px;font-size:12px}
+.card p,.card li{color:var(--muted);font-size:14px}
+.card ul{list-style:none}
+.card li{margin:4px 0}
+.download{display:block;text-align:center;background:linear-gradient(135deg,#2563eb,#7c3aed);padding:11px;border-radius:9px;text-decoration:none;font-weight:700;margin-top:auto}
+.empty{grid-column:1/-1;text-align:center;padding:35px;color:var(--muted);border:1px dashed #9333ea66;border-radius:14px}
+.faq{max-width:800px;margin:auto}
+.faq-item{background:var(--card);border:1px solid #9333ea44;border-radius:10px;margin-bottom:10px}
+.faq-question{width:100%;padding:16px;text-align:left;background:none;color:white;border:0;font-size:16px;cursor:pointer}
+.faq-answer{display:none;padding:0 16px 16px;color:var(--muted)}
+.faq-item.open .faq-answer{display:block}
+footer{text-align:center;padding:35px 20px;background:#100f1a;color:var(--muted);margin-top:30px}
+.credit{color:#c4b5fd;margin-top:8px;font-weight:700}
+@media(min-width:768px){.filters{flex-direction:row;align-items:center;justify-content:space-between}input[type=search]{min-width:300px}nav ul{display:flex}}
+@media(max-width:767px){nav{flex-wrap:wrap}nav ul{order:3;width:100%;justify-content:center;gap:14px;flex-wrap:wrap}.telegram{font-size:13px}.hero{padding-top:60px}}
+</style>
 </head>
 <body>
+<header>
+<nav>
+<a class="logo" href="#home">BRUXHUB</a>
+<ul>
+<li><a href="#home">Главная</a></li>
+<li><a href="#catalog">Каталог</a></li>
+<li><a href="#news">Новости</a></li>
+<li><a href="#about">О проекте</a></li>
+</ul>
+<a class="telegram" href="https://t.me/BruxHu" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i> Telegram</a>
+</nav>
+</header>
 
-  <header>
-    <nav class="nav-container">
-      <a href="#" class="brand-logo">
-        <div class="logo-badge">B</div>
-        <span class="brand-title">BRUXHUB</span>
-      </a>
+<main>
+<section class="hero" id="home">
+<span class="badge">⚡ ИГРОВОЙ ХАБ СООБЩЕСТВА</span>
+<h1>BRUXHUB — ТВОЙ ИГРОВОЙ HUB</h1>
+<p>Единая площадка для игровых проектов, приватных серверов, новостей и игровых возможностей.</p>
+<a class="primary" href="#catalog"><i class="fa-solid fa-gamepad"></i> Открыть каталог</a>
+</section>
 
-      <div class="nav-right-group">
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#" class="nav-link active">Главная</a></li>
-          <li><a href="#catalog" class="nav-link">Каталог</a></li>
-          <li><a href="#news" class="nav-link">Новости</a></li>
-          <li><a href="#faq" class="nav-link">О проекте</a></li>
-        </ul>
+<section class="section" id="catalog">
+<div class="heading"><h2>КАТАЛОГ ПРОЕКТОВ</h2><p class="muted">Выбирай проекты и находи нужные материалы</p></div>
+<div class="filters">
+<input type="search" id="searchInput" placeholder="Поиск проектов или файлов...">
+<div class="chips" id="categoryChips">
+<button class="chip active" data-cat="all">Все проекты</button>
+<button class="chip" data-cat="standoff">Standoff 2</button>
+<button class="chip" data-cat="privates">Приватные сервера</button>
+<button class="chip" data-cat="pc">PC (Скоро)</button>
+</div>
+</div>
+<div class="grid" id="catalogGrid"></div>
+</section>
 
-        <a href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer" class="btn-telegram-header">
-          <i class="fa-brands fa-telegram"></i> Подписаться на канал
-        </a>
+<section class="section" id="news">
+<div class="heading"><h2>НОВОСТИ И ОБНОВЛЕНИЯ</h2><p class="muted">Последние события сообщества</p></div>
+<div class="grid">
+<div class="card"><div class="card-icon"><i class="fa-solid fa-newspaper"></i></div><h3>Новости BruxHub</h3><p>Следи за новыми проектами и обновлениями в нашем Telegram-канале.</p><a class="download" href="https://t.me/BruxHu" target="_blank" rel="noopener">Открыть Telegram</a></div>
+</div>
+</section>
 
-        <button class="hamburger" id="hamburgerBtn" aria-label="Открыть меню">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </nav>
-  </header>
+<section class="section" id="about">
+<div class="heading"><h2>О ПРОЕКТЕ & FAQ</h2></div>
+<div class="faq">
+<div class="faq-item"><button class="faq-question">Что такое BRUXHUB?　⌄</button><div class="faq-answer">BRUXHUB — независимая площадка для игровых проектов и сообщества.</div></div>
+<div class="faq-item"><button class="faq-question">Где следить за обновлениями?　⌄</button><div class="faq-answer">Новости публикуются в Telegram-канале <a href="https://t.me/BruxHu">BruxHu</a>.</div></div>
+<div class="faq-item"><button class="faq-question">Это официальный сайт Standoff 2?　⌄</button><div class="faq-answer">Нет, это независимый фан-проект.</div></div>
+</div>
+</section>
+</main>
 
-  <section class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-tag">
-      <i class="fa-solid fa-bolt"></i> Игровой хаб сообщества
-    </div>
-    <h1>BRUXHUB — ТВОЙ ИГРОВОЙ HUB</h1>
-    <p>Единая площадка для игровых проектов, приватных серверов, новостей и игровых возможностей.</p>
-    
-    <div class="hero-buttons">
-      <a href="#catalog" class="btn-primary">
-        <i class="fa-solid fa-gamepad"></i> Открыть каталог
-      </a>
-    </div>
-  </section>
+<footer>
+<p>BRUXHUB — игровой хаб сообщества</p>
+<p class="credit">By the Icovenaca</p>
+</footer>
 
-  <section class="section-container" id="catalog">
-    <div class="section-header">
-      <h2 class="section-title">КАТАЛОГ ПРОЕКТОВ</h2>
-      <p class="section-desc">Выбирай интересующие игровые проекты и будь в курсе всех обновлений</p>
-    </div>
+<script>
+const projects=[
+{title:"Standoff 2 — материалы",category:"standoff",badge:"Standoff 2",icon:"fa-crosshairs",description:"Полезные материалы и ссылки для сообщества Standoff 2.",features:["Информация о проекте","Материалы сообщества"],url:""},
+{title:"Приватные серверы",category:"privates",badge:"Приватные сервера",icon:"fa-server",description:"Информация о приватных игровых серверах.",features:["Описание проектов","Обновления"],url:""},
+{title:"PC-проекты",category:"pc",badge:"Скоро",icon:"fa-desktop",description:"Раздел компьютерных игровых проектов.",features:["Скоро появятся материалы"],url:""}
+];
+const grid=document.getElementById("catalogGrid");
+const search=document.getElementById("searchInput");
+const chips=document.getElementById("categoryChips");
+let category="all";
 
-    <div class="filter-bar">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="searchInput" class="search-input" placeholder="Поиск проектов или файлов...">
-      </div>
-
-      <div class="category-chips" id="categoryChips">
-        <button class="chip-btn active" data-cat="all">Все проекты</button>
-        <button class="chip-btn" data-cat="standoff">Standoff 2</button>
-        <button class="chip-btn" data-cat="privates">Приватные сервера</button>
-        <button class="chip-btn" data-cat="pc">PC (Скоро)</button>
-      </div>
-    </div>
-
-    <div class="grid-container" id="catalogGrid">
-      <!-- Dynamic Project Cards -->
-    </div>
-  </section>
-
-  <section class="section-container" id="news">
-    <div class="section-header">
-      <h2 class="section-title">НОВОСТИ И ОБНОВЛЕНИЯ</h2>
-      <p class="section-desc">Последние события нашего игрового сообщества</p>
-    </div>
-
-    <div class="grid-container" id="newsGrid">
-      <div class="empty-box">
-        <i class="fa-solid fa-newspaper"></i>
-        <p>Скоро здесь появятся новости</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-container" id="faq">
-    <div class="section-header">
-      <h2 class="section-title">О ПРОЕКТЕ & FAQ</h2>
-      <p class="section-desc">Ответы на часто задаваемые вопросы пользователей</p>
-    </div>
-
-    <div class="faq-accordion">
-      <div class="faq-item">
-        <div class="faq-header">
-          <span>Что такое BRUXHUB?</span>
-          <i class="fa-solid fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-body">
-          <p>BRUXHUB — это информационная и интерактивная площадка для любителей шутеров, приватных серверов и игровых сообществ. Наш хаб собирает лучшие материалы, обзоры и файлы проектов.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-header">
-          <span>Где следить за обновлениями?</span>
-          <i class="fa-solid fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-body">
-          <p>Все самые свежие обновления, модификации и новости публикуются в нашем официальном Telegram-канале t.me/BruxHu.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-header">
-          <span>Является ли BRUXHUB официальным сайтом Standoff 2?</span>
-          <i class="fa-solid fa-chevron-down faq-icon"></i>
-        </div>
-        <div class="faq-body">
-          <p>Нет, BRUXHUB является независимой фан-площадкой и сообществом, созданным для фанатов мобильных шутеров и приватных модификаций.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="modal-over
+function safe(text){
+return String(text).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function render(){
+const q=search.value.trim().toLowerCase();
+const result=projects.filter(p=>(category==="all"||p.category===category)&&[p.title,p.badge,p.description,...p.features].join(" ").toLowerCase().includes(q));
+if(!result.length){
+grid.innerHTML='<div class="empty">Ничего не найдено. Измени запрос или категорию.</div>';
+return;
+}
+grid.innerHTML=result.map(p=>`
+<article class="card">
+<div class="card-icon"><i class="fa-solid ${safe(p.icon)}"></i></div>
+<h3>${safe(p.title)}</h3>
+<span class="badge">${safe(p.badge)}</span>
+<p>${safe(p.description)}</p>
+<ul>${p.features.map(f=>`<li>✓ ${safe(f)}</li>`).join("")}</ul>
+<a class="download" href="${p.url?safe(p.url):"https://t.me/BruxHu"}" target="_blank" rel="noopener">${p.url?"⬇ Открыть / скачать":"✈ Следить за обновлениями"}</a>
+</article>`).join("");
+}
+search.addEventListener("input",render);
+chips.addEventListener("click",e=>{
+const btn=e.target.closest("[data-cat]");
+if(!btn)return;
+category=btn.dataset.cat;
+chips.querySelectorAll(".chip").forEach(b=>b.classList.toggle("active",b===btn));
+render();
+});
+document.querySelectorAll(".faq-question").forEach(btn=>btn.addEventListener("click",()=>btn.parentElement.classList.toggle("open")));
+render();
+</script>
+</body>
+</html>
