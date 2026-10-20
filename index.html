@@ -29,3 +29,292 @@ h2{font-size:clamp(1.5rem,3.5vw,2.1rem);margin-bottom:8px}
 header{position:sticky;top:0;z-index:50;background:rgba(7,4,13,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;gap:16px;min-height:64px}
 .logo{font-weight:800;font-size:1.35rem;text-decoration:none;letter-spacing:-.03em}
+.logo b{color:var(--p2)}
+nav{margin-left:auto;display:flex;align-items:center;gap:4px}
+nav a.l{padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--mute);font-weight:500}
+nav a.l:hover{color:var(--text);background:var(--bg2)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1.4rem;cursor:pointer}
+@media(max-width:860px){
+.burger{display:block}
+nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;background:var(--bg2);padding:12px 16px 16px;border-bottom:1px solid var(--line)}
+nav.open{display:flex}
+nav a.l{padding:14px}
+}
+.hero{padding:72px 0 40px}
+.hero h1{font-size:clamp(2.6rem,9vw,5rem);font-weight:800}
+.hero h1 b{background:linear-gradient(120deg,#fff,var(--p2) 60%,var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:1.15rem;color:var(--mute);max-width:56ch;margin:16px 0 28px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:40px}
+.stat{padding:18px;border:1px solid var(--line);border-radius:var(--r);background:rgba(21,13,38,.7)}
+.stat strong{display:block;font-size:1.05rem;margin-bottom:4px}
+.stat span{color:var(--mute);font-size:.95rem}
+.tools{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.search{flex:1 1 260px;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font:inherit}
+.search::placeholder{color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--mute);font:inherit;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--p);border-color:var(--p);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:var(--card);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--p);box-shadow:0 12px 40px -18px var(--p)}
+.cover{aspect-ratio:16/9;display:grid;place-items:center;font-size:2.2rem;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--c1),var(--c2));object-fit:cover;width:100%}
+.cbody{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cbody p{color:var(--mute);font-size:.95rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.8rem;padding:3px 10px;border-radius:999px;background:#241440;color:var(--p2)}
+.tag.ok{background:#0f2a1a;color:var(--ok)}
+.tag.no{background:#2a1f0a;color:var(--warn)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.acts .full{grid-column:1/-1}
+.empty{text-align:center;padding:48px 16px;border:1px dashed var(--line);border-radius:var(--r);color:var(--mute)}
+.empty h3{color:var(--text);margin-bottom:6px}
+.empty .btn{margin-top:16px}
+[hidden]{display:none!important}
+.news{display:grid;gap:14px}
+.nitem{padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.nitem small{color:var(--mute)}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.feat div{padding:18px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--line)}
+.feat h3{font-size:1.05rem;margin-bottom:4px}
+.feat p{color:var(--mute);font-size:.95rem}
+details{border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:10px;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:16px 18px;min-height:52px;font-weight:600;display:flex;justify-content:space-between;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--p2);font-size:1.4rem;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details .ans{padding:0 18px 16px;color:var(--mute);animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.community{text-align:center;padding:36px 20px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,#1c0e3a,#0d0719)}
+.community p{color:var(--mute);margin:8px auto 20px;max-width:52ch}
+dialog{width:min(560px,100% - 24px);max-height:92vh;overflow:auto;border:1px solid var(--p);border-radius:22px;background:var(--bg2);color:var(--text);padding:0}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+.dhead{display:flex;justify-content:flex-end;padding:10px 10px 0}
+.close{width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:1.3rem;cursor:pointer}
+.dbody{padding:0 22px 22px;display:grid;gap:14px}
+.dbody .cover{border-radius:14px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.95rem}
+dt{color:var(--mute)}
+.note{padding:12px 14px;border-radius:12px;font-size:.92rem;background:#1b1030;border:1px solid var(--line);color:var(--mute)}
+.note.warn{border-color:#5c4410;color:var(--warn);background:#1f1707}
+.note a{color:var(--p2)}
+footer{border-top:1px solid var(--line);padding:36px 0;margin-top:24px;background:#05030a}
+.fgrid{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+.fgrid p{color:var(--mute);max-width:36ch;margin-top:8px;font-size:.95rem}
+.flinks{display:flex;flex-wrap:wrap;gap:4px 16px}
+.flinks a{padding:10px 0;color:var(--mute);text-decoration:none}
+.flinks a:hover{color:var(--text)}
+.copy{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);color:var(--mute);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap bar">
+  <a class="logo" href="#top" aria-label="BruxHub — наверх">Brux<b>Hub</b></a>
+  <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">☰</button>
+  <nav id="nav" aria-label="Основное меню">
+   <a class="l" href="#catalog">Каталог</a>
+   <a class="l" href="#news">Новости</a>
+   <a class="l" href="#features">Возможности</a>
+   <a class="l" href="#faq">FAQ</a>
+   <a class="btn primary sm tg" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">Telegram</a>
+  </nav>
+ </div>
+</header>
+
+<main id="top">
+ <section class="hero">
+  <div class="wrap">
+   <h1>Brux<b>Hub</b></h1>
+   <p>Каталог игровых модификаций, клиентов и инструментов в одном месте. Ищите проект, смотрите описание и переходите к загрузке.</p>
+   <div class="row">
+    <a class="btn primary" href="#catalog">Открыть каталог</a>
+    <a class="btn tg" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">Telegram-канал</a>
+   </div>
+   <div class="stats">
+    <div class="stat"><strong>Единый каталог</strong><span>Все проекты на одной странице с карточками.</span></div>
+    <div class="stat"><strong>Поиск и фильтры</strong><span>По названию, описанию и платформе.</span></div>
+    <div class="stat"><strong>Ссылки на загрузку</strong><span>Кнопка есть только там, где ссылка задана.</span></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="catalog">
+  <div class="wrap">
+   <h2>Каталог</h2>
+   <p class="sub">Выберите категорию или введите название проекта.</p>
+   <div class="tools"><input class="search" id="q" type="search" placeholder="Поиск по названию и описанию" aria-label="Поиск по каталогу" autocomplete="off"></div>
+   <div class="chips" id="chips" role="group" aria-label="Фильтр по категории"></div>
+   <p class="sub" id="count" aria-live="polite" style="margin-bottom:12px"></p>
+   <div class="grid" id="grid"></div>
+   <div class="empty" id="none" hidden><h3>Ничего не найдено</h3><p>Попробуйте другой запрос или сбросьте фильтры.</p><button class="btn primary" id="reset">Сбросить фильтры</button></div>
+  </div>
+ </section>
+
+ <section id="news">
+  <div class="wrap">
+   <h2>Новости</h2>
+   <div class="news" id="newsList"></div>
+  </div>
+ </section>
+
+ <section id="features">
+  <div class="wrap">
+   <h2>Возможности</h2>
+   <p class="sub">Что BruxHub умеет сейчас.</p>
+   <div class="feat">
+    <div><h3>Единый каталог</h3><p>Проекты собраны в карточки с описанием и статусом.</p></div>
+    <div><h3>Поиск по проектам</h3><p>Работает сразу, без перезагрузки страницы.</p></div>
+    <div><h3>Разделение по платформам</h3><p>Фильтры Android, PC, клиенты, инструменты.</p></div>
+    <div><h3>Переход к загрузке</h3><p>Прямая ссылка и запасной вариант, если загрузка не началась.</p></div>
+    <div><h3>Новости</h3><p>Раздел обновляется из одного списка в коде.</p></div>
+    <div><h3>Связь через Telegram</h3><p>Канал проекта открывается в один тап.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="faq">
+  <div class="wrap">
+   <h2>Частые вопросы</h2>
+   <div id="faqList" style="margin-top:20px"></div>
+  </div>
+ </section>
+
+ <section>
+  <div class="wrap">
+   <div class="community">
+    <h2>Сообщество в Telegram</h2>
+    <p>Сообщайте о неработающих ссылках и следите за обновлениями в канале.</p>
+    <a class="btn primary tg" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">Перейти в Telegram</a>
+   </div>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div><a class="logo" href="#top">Brux<b>Hub</b></a><p>Каталог игровых модификаций и инструментов. Неофициальный проект, не связан с разработчиками игр.</p></div>
+   <div class="flinks" aria-label="Навигация в футере">
+    <a href="#catalog">Каталог</a><a href="#news">Новости</a><a href="#features">Возможности</a><a href="#faq">FAQ</a>
+    <a class="tg" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">Telegram</a>
+   </div>
+  </div>
+  <div class="copy"><span>© <span id="year">2026</span> BruxHub</span><span>By the Icovenaca</span></div>
+ </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dTitle">
+ <div class="dhead"><button class="close" id="dClose" aria-label="Закрыть окно">✕</button></div>
+ <div class="dbody" id="dBody"></div>
+</dialog>
+
+<script>
+/* ====================================================================
+   НАСТРОЙКИ САЙТА — редактируйте только этот блок
+   ==================================================================== */
+
+/* Категории фильтра. Значение "Все" добавляется само. */
+const CATEGORIES = ["Android", "PC", "Игровые клиенты", "Инструменты", "Другое"];
+
+/* Проекты. Чтобы добавить карточку — скопируйте один блок { ... }, и вставьте через запятую.
+   download: тип "drive" (нужен id файла) или "direct" (нужен url). Если загрузки нет — уберите поле download.
+   version / size / updated: пишите только если данные точно известны, иначе оставьте пустой строкой "". */
+const PROJECTS = [
+  {
+    id: "standoff2",
+    title: "Standoff 2",
+    categories: ["Android", "Игровые клиенты"],
+    description: "Материалы и файлы для Standoff 2.",
+    cover: "",               /* путь к картинке, например "img/standoff2.jpg" */
+    colors: ["#3a1480", "#12062b"],
+    platform: "Android",
+    version: "", size: "", updated: "",
+    unofficial: true,
+    status: "available",     /* "available" | "soon" | "unavailable" */
+    download: {
+      type: "drive",
+      id: "1kCkMZdMiL0bYfXGTNaZVHkaXOjnX9aqC",
+      label: "Скачать APK",
+      pageUrl: "https://drive.google.com/file/d/1kCkMZdMiL0bYfXGTNaZVHkaXOjnX9aqC/view?usp=drivesdk",
+      errorText: "Если файл удалён или доступ закрыт, сообщите об этом в Telegram."
+    }
+  },
+  { id: "standknaif", title: "Standknaif", categories: ["Android", "Другое"], description: "Проект в разработке. Ссылка на загрузку пока не добавлена.", colors: ["#5a1a8f", "#170834"], platform: "Android", unofficial: true, status: "soon" },
+  { id: "standleo", title: "Standleo", categories: ["Android", "Другое"], description: "Проект в разработке. Ссылка на загрузку пока не добавлена.", colors: ["#6b2bb5", "#1a0a3a"], platform: "Android", unofficial: true, status: "soon" },
+  { id: "standrise", title: "Standrise", categories: ["Android", "Другое"], description: "Проект в разработке. Ссылка на загрузку пока не добавлена.", colors: ["#4b2fd0", "#0f0a3a"], platform: "Android", unofficial: true, status: "soon" },
+  { id: "pc", title: "PC", categories: ["PC"], description: "Раздел для проектов на компьютер. Ссылка на загрузку пока не добавлена.", colors: ["#2d1b69", "#0b0620"], platform: "PC", status: "soon" },
+  { id: "other", title: "Другие проекты", categories: ["Другое", "Инструменты"], description: "Здесь будут появляться новые проекты и инструменты.", colors: ["#7a35ee", "#1b0b3a"], platform: "", status: "soon" }
+];
+
+/* Новости. Новая новость — новый блок сверху списка. Пустой список = сообщение «Новостей пока нет».
+   Формат: { title: "Заголовок", text: "Текст", date: "2026-10-20", category: "Обновление", url: "https://..." } */
+const NEWS = [];
+
+/* Вопросы и ответы */
+const FAQ = [
+  ["Что такое BruxHub?", "Каталог игровых модификаций, клиентов и инструментов. Сайт только собирает ссылки и описания и не связан с разработчиками игр."],
+  ["Как скачать файл?", "Откройте карточку проекта и нажмите «Скачать». Если у проекта нет кнопки, ссылка пока не добавлена."],
+  ["Почему Google Drive требует подтверждение?", "Для некоторых файлов Google Drive показывает страницу с предупреждением, например, что файл не проверен на вирусы. Это правило Google, сайт его не отключает. На такой странице нажмите «Всё равно скачать»."],
+  ["Что делать, если файл не скачивается?", "Нажмите «Открыть страницу файла» под кнопкой и скачайте файл оттуда. Если и это не помогло, возможно, файл удалён или доступ закрыт. Напишите об этом в Telegram."],
+  ["Как открыть сайт во внешнем браузере?", "В Telegram нажмите на три точки в углу окна и выберите «Открыть в браузере». Либо скопируйте адрес сайта и вставьте в Chrome."],
+  ["Как сообщить о неработающей ссылке?", "Напишите в Telegram-канал BruxHub, указав название проекта."],
+  ["Где следить за новостями?", "В разделе «Новости» на сайте и в Telegram-канале проекта."],
+  ["Почему Android предупреждает при установке APK?", "Android и Google Play Protect проверяют файлы не из магазина приложений. Это стандартная защита системы. Устанавливайте файлы только если доверяете источнику."]
+];
+
+const TELEGRAM = "https://t.me/BruxHu";
+
+/* ====================================================================
+   КОД САЙТА
+   ==================================================================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const STATUS = { available: ["Доступно", "ok"], soon: ["Скоро", "no"], unavailable: ["Недоступно", "no"] };
+
+let activeCat = "Все", query = "";
+
+/* Адрес загрузки: Google Drive -> формат прямого скачивания, иначе обычная прямая ссылка */
+function downloadUrl(d) {
+  if (!d) return "";
+  if (d.type === "drive" && /^[\w-]{10,}$/.test(d.id || "")) return "https://drive.google.com/uc?export=download&id=" + encodeURIComponent(d.id);
+  if (d.type === "direct" && /^https:\/\//.test(d.url || "")) return d.url;
+  return "";
+}
+const hasDownload = p => !!downloadUrl(p.download) && p.status !== "unavailable";
+const fallbackUrl = d => d.pageUrl || (d.type === "drive" ? "https://drive.google.com/file/d/" + encodeURIComponent(d.id) + "/view" : d.url || "");
+const inTelegram = /Telegram/i.test(navigator.userAgent) || !!window.TelegramWebviewProxy;
+
+function coverHtml(p, lazy) {
+  if (p.cover) return `<img class="cover" src="${esc(p.cover)}" alt="Обложка ${esc(p.title)}" ${lazy ? 'loading="lazy"' : ""} width="640" height="360">`;
+  return `<div class="cover" role="img" aria-label="Обложка ${esc(p.title)}" style="--c1:${esc(p.colors?.[0] || "#3a1480")};--c2:${esc(p.colors?.[1] || "#12062b")}">${esc(p.title.slice(0, 2))}</div>`;
+}
+
+function downloadBlock(p, extraClass) {
+  if (!hasDownload(p)) return `<span class="btn sm ${extraClass || ""}" aria-disabled="true">Ссылка отсутствует</span>`;
+  return `<a class="btn primary sm dl ${extraClass || ""}" data-id="${esc(p.id)}" href="${esc(downloadUrl(p.download))}" target="_blank" rel="noopener noreferrer">${esc(p.download.label || "Скачать")}</a>`;
+}
+
+function renderChips() {
+  $("#chips").innerHTML = ["Все", ...CATEGORIES].map(c => `<button class="chip" type="button" aria-pressed="${c === activeCat}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+
+function renderGrid() {
+  const q = query.trim().toLowerCase();
+  const list = PROJECTS.filter(p => (activeCat === "Все" || p.categories.includes(activeCat)) && (!q || (p.title + " " + p.description).toLowerCase().includes(q)));
+  $("#grid").innerHTML = list.map((p, i) => {
+    const [st, cls] = STATUS[p.status] || STATUS.soon;
+    return `<article class="card">${coverHtml(p, i > 2)}<div class="cbody">
+      <div class="tags"><span class="tag ${cls}">${st}</span>${p.categories.map(c => `<span class="tag">${esc(c)}</span>`).join("")}</div>
+      <h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>
+      <div class="acts"><button class="btn sm more" type="button" data-id="${esc(p.id)}">Подробнее</button>${downloadBlock(p)}</div>
+    </div></article>`;
+  }).join("");
+  $("#none").hidden = list.length > 0;
+  $("#count").textContent = list.length ? "Найдено проектов: " + list.length : "";
+}
+
+function renderNews() {
+  const el = $("#newsList");
+  if (!NEWS.length) { el.innerHTML = `<div class="empty"><h3>Новостей пока нет</h3><p>Следите за обновлениями в Tele
