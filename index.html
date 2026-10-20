@@ -6,311 +6,143 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08070d">
 <title>BRUXHUB — Твой игровой Hub</title>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg:#08070d;
-  --surface:#100f1a;
-  --card:#151324;
-  --border:rgba(168,85,247,.25);
-  --purple:#9333ea;
-  --pink:#ec4899;
-  --text:#f3f4f6;
-  --muted:#9ca3af;
-}
-* {box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,Arial,sans-serif;
-  line-height:1.6;
-  overflow-x:hidden;
-}
-a {color:inherit}
-header {
-  position:sticky;top:0;z-index:20;
-  background:rgba(16,15,26,.95);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid #ffffff14;
-}
-.nav {
-  max-width:1200px;margin:auto;padding:14px 22px;
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
-}
-.brand {display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo {
-  width:44px;height:44px;border-radius:12px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--purple),var(--pink));
-  font:900 24px Orbitron,sans-serif;
-}
-.brand-name {
-  font:900 1.25rem Orbitron,sans-serif;
-  background:linear-gradient(135deg,#fff,#d8b4fe);
-  -webkit-background-clip:text;color:transparent;
-}
-.nav-right {display:flex;align-items:center;gap:18px}
-.nav-menu {display:flex;gap:20px;list-style:none}
-.nav-menu a {text-decoration:none;color:var(--muted)}
-.nav-menu a:hover {color:white}
-.telegram,.primary,.download {
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  text-decoration:none;color:white;font-weight:700;
-  border:0;border-radius:11px;
-  background:linear-gradient(135deg,var(--purple),var(--pink));
-  padding:11px 16px;cursor:pointer;
-}
-.hamburger {
-  display:none;background:none;border:0;color:white;font-size:24px;
-}
-.hero {
-  max-width:1100px;margin:auto;padding:85px 22px 65px;
-  text-align:center;position:relative;
-}
-.hero:before {
-  content:"";position:absolute;z-index:-1;top:35px;left:50%;
-  transform:translateX(-50%);width:340px;height:260px;
-  background:#9333ea33;filter:blur(75px);border-radius:50%;
-}
-.tag {
-  display:inline-block;padding:6px 14px;margin-bottom:22px;
-  border:1px solid #9333ea66;border-radius:30px;
-  background:#9333ea1f;color:#d8b4fe;font-size:.82rem;font-weight:700;
-}
-h1 {
-  font:900 clamp(2rem,5vw,3.4rem)/1.2 Orbitron,sans-serif;
-  background:linear-gradient(135deg,#fff 25%,#f472b6 70%,#a855f7);
-  -webkit-background-clip:text;color:transparent;margin-bottom:18px;
-}
-.hero p {max-width:680px;margin:0 auto 28px;color:var(--muted);font-size:1.05rem}
-.section {max-width:1200px;margin:auto;padding:55px 22px}
-.section-head {text-align:center;margin-bottom:32px}
-.section-title {
-  font:800 clamp(1.5rem,3vw,2.2rem) Orbitron,sans-serif;
-  background:linear-gradient(135deg,#fff,#c084fc);
-  -webkit-background-clip:text;color:transparent;margin-bottom:10px;
-}
-.section-desc {color:var(--muted)}
-.filters {display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
-.search {position:relative;width:100%;max-width:500px}
-.search i {position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.search input {
-  width:100%;padding:13px 15px 13px 43px;
-  border-radius:12px;background:var(--card);
-  border:1px solid var(--border);color:white;font-size:.95rem;outline:none;
-}
-.search input:focus {border-color:var(--purple)}
-.chips {display:flex;gap:9px;overflow-x:auto;padding:3px 1px 7px}
-.chip {
-  white-space:nowrap;padding:9px 15px;border-radius:22px;
-  background:var(--card);border:1px solid var(--border);
-  color:var(--muted);cursor:pointer;
-}
-.chip.active,.chip:hover {
-  background:linear-gradient(135deg,var(--purple),var(--pink));
-  color:white;border-color:transparent;
-}
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
-  gap:20px;
-}
-.card {
-  display:flex;flex-direction:column;padding:22px;border-radius:17px;
-  background:var(--card);border:1px solid var(--border);
-  min-width:0;transition:transform .2s,border-color .2s;
-}
-.card:hover {transform:translateY(-3px);border-color:#ec489977}
-.card-top {display:flex;align-items:center;gap:13px;margin-bottom:15px}
-.card-icon {
-  width:50px;height:50px;display:grid;place-items:center;flex-shrink:0;
-  border-radius:13px;background:#9333ea30;color:#f472b6;font-size:1.35rem;
-}
-.card h3 {font:700 1rem Orbitron,sans-serif;margin-bottom:5px;overflow-wrap:anywhere}
-.badge {
-  display:inline-block;font-size:.7rem;padding:2px 8px;
-  border-radius:6px;background:#9333ea30;color:#d8b4fe;
-}
-.desc {color:var(--muted);font-size:.9rem;margin-bottom:18px}
-.features {list-style:none;margin:0 0 20px;color:#d1d5db;font-size:.85rem}
-.features li {margin:5px 0}
-.features i {color:var(--pink);margin-right:7px}
-.actions {margin-top:auto;display:grid;gap:10px}
-.download {width:100%;padding:12px;font-size:.9rem;text-align:center}
-.download:hover {filter:brightness(1.13)}
-.server-links {display:grid;gap:9px;margin-bottom:18px}
-.server-link {
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:11px 13px;border-radius:10px;
-  background:#9333ea17;border:1px solid var(--border);
-  text-decoration:none;font-size:.9rem;font-weight:700;
-}
-.server-link:hover {background:#9333ea35}
-.server-link span:last-child {color:#d8b4fe}
-.empty {
-  grid-column:1/-1;text-align:center;padding:40px 20px;
-  border:1px dashed var(--border);border-radius:16px;color:var(--muted);
-}
-.empty i {display:block;font-size:2.2rem;color:var(--purple);margin-bottom:10px}
-.news-card {padding:22px;border-radius:16px;background:var(--card);border:1px solid var(--border)}
-.news-card h3 {margin-bottom:8px}
-.news-card p {color:var(--muted);font-size:.92rem}
-.faq {max-width:800px;margin:auto;display:grid;gap:12px}
-.faq-item {background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.faq-question {
-  width:100%;display:flex;justify-content:space-between;gap:12px;text-align:left;
-  padding:16px 19px;background:none;border:0;color:white;
-  font:600 1rem Inter;cursor:pointer;
-}
-.faq-answer {display:none;padding:0 19px 17px;color:var(--muted);font-size:.92rem}
-.faq-item.open .faq-answer {display:block}
-.faq-item.open .faq-question i {transform:rotate(180deg)}
-footer {
-  margin-top:35px;padding:35px 22px 24px;text-align:center;
-  background:var(--surface);border-top:1px solid #ffffff14;
-}
-footer p {color:var(--muted);font-size:.9rem}
-.credit {margin-top:9px;color:#c4b5fd;font-size:.84rem;font-weight:700}
-@media(max-width:850px) {
-  .nav {flex-wrap:wrap}
-  .nav-right {gap:12px}
-  .nav-menu {
-    display:none;position:absolute;top:72px;left:0;right:0;
-    background:var(--surface);padding:22px;flex-direction:column;
-    border-bottom:1px solid var(--border);
-  }
-  .nav-menu.open {display:flex}
-  .hamburger {display:block}
-  .telegram {padding:10px 12px;font-size:.82rem}
-  .hero {padding-top:65px}
-}
-@media(max-width:430px) {
-  .brand-name {font-size:1.05rem}
-  .logo {width:39px;height:39px}
-  .telegram {font-size:0;width:42px;height:42px;padding:0}
-  .telegram i {font-size:19px}
-  .hero p {font-size:1rem}
-}
+:root{--bg:#08070d;--surface:#100f1a;--card:#151324;--border:rgba(168,85,247,.25);--purple:#9333ea;--pink:#ec4899;--text:#f3f4f6;--muted:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(16,15,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid #ffffff14}
+.nav{max-width:1200px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),var(--pink));font:900 24px Orbitron,sans-serif}
+.brand-name{font:900 1.25rem Orbitron,sans-serif;background:linear-gradient(135deg,#fff,#d8b4fe);-webkit-background-clip:text;color:transparent}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-menu{display:flex;gap:20px;list-style:none}
+.nav-menu a{text-decoration:none;color:var(--muted)}
+.nav-menu a:hover{color:white}
+.telegram,.primary,.download{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;color:white;font-weight:700;border:0;border-radius:11px;background:linear-gradient(135deg,var(--purple),var(--pink));padding:11px 16px;cursor:pointer}
+.hamburger{display:none;background:none;border:0;color:white;font-size:24px}
+.hero{max-width:1100px;margin:auto;padding:85px 22px 65px;text-align:center;position:relative}
+.hero:before{content:"";position:absolute;z-index:-1;top:35px;left:50%;transform:translateX(-50%);width:340px;height:260px;background:#9333ea33;filter:blur(75px);border-radius:50%}
+.tag{display:inline-block;padding:6px 14px;margin-bottom:22px;border:1px solid #9333ea66;border-radius:30px;background:#9333ea1f;color:#d8b4fe;font-size:.82rem;font-weight:700}
+h1{font:900 clamp(2rem,5vw,3.4rem)/1.2 Orbitron,sans-serif;background:linear-gradient(135deg,#fff 25%,#f472b6 70%,#a855f7);-webkit-background-clip:text;color:transparent;margin-bottom:18px}
+.hero p{max-width:680px;margin:0 auto 28px;color:var(--muted);font-size:1.05rem}
+.section{max-width:1200px;margin:auto;padding:55px 22px}
+.section-head{text-align:center;margin-bottom:32px}
+.section-title{font:800 clamp(1.5rem,3vw,2.2rem) Orbitron,sans-serif;background:linear-gradient(135deg,#fff,#c084fc);-webkit-background-clip:text;color:transparent;margin-bottom:10px}
+.section-desc{color:var(--muted)}
+.filters{display:flex;flex-direction:column;gap:16px;margin-bottom:28px}
+.search{position:relative;width:100%;max-width:500px}
+.search i{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.search input{width:100%;padding:13px 15px 13px 43px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:white;font-size:.95rem;outline:none}
+.search input:focus{border-color:var(--purple)}
+.chips{display:flex;gap:9px;overflow-x:auto;padding:3px 1px 7px}
+.chip{white-space:nowrap;padding:9px 15px;border-radius:22px;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer}
+.chip.active,.chip:hover{background:linear-gradient(135deg,var(--purple),var(--pink));color:white;border-color:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px}
+.card{display:flex;flex-direction:column;padding:22px;border-radius:17px;background:var(--card);border:1px solid var(--border);min-width:0;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:#ec489977}
+.card-top{display:flex;align-items:center;gap:13px;margin-bottom:15px}
+.card-icon{width:50px;height:50px;display:grid;place-items:center;flex-shrink:0;border-radius:13px;background:#9333ea30;color:#f472b6;font-size:1.35rem}
+.card h3{font:700 1rem Orbitron,sans-serif;margin-bottom:5px;overflow-wrap:anywhere}
+.badge{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:6px;background:#9333ea30;color:#d8b4fe}
+.desc{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.features{list-style:none;margin:0 0 20px;color:#d1d5db;font-size:.85rem}
+.features li{margin:5px 0}
+.features i{color:var(--pink);margin-right:7px}
+.actions{margin-top:auto;display:grid;gap:10px}
+.download{width:100%;padding:12px;font-size:.9rem;text-align:center}
+.download:hover{filter:brightness(1.13)}
+.server-links{display:grid;gap:9px;margin-bottom:18px}
+.server-link{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;border-radius:10px;background:#9333ea17;border:1px solid var(--border);text-decoration:none;font-size:.9rem;font-weight:700}
+.server-link:hover{background:#9333ea35}
+.server-link span:last-child{color:#d8b4fe}
+.empty{grid-column:1/-1;text-align:center;padding:40px 20px;border:1px dashed var(--border);border-radius:16px;color:var(--muted)}
+.empty i{display:block;font-size:2.2rem;color:var(--purple);margin-bottom:10px}
+.faq{max-width:800px;margin:auto;display:grid;gap:12px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-question{width:100%;display:flex;justify-content:space-between;gap:12px;text-align:left;padding:16px 19px;background:none;border:0;color:white;font:600 1rem Inter;cursor:pointer}
+.faq-answer{display:none;padding:0 19px 17px;color:var(--muted);font-size:.92rem}
+.faq-item.open .faq-answer{display:block}
+.faq-item.open .faq-question i{transform:rotate(180deg)}
+footer{margin-top:35px;padding:35px 22px 24px;text-align:center;background:var(--surface);border-top:1px solid #ffffff14}
+footer p{color:var(--muted);font-size:.9rem}
+.credit{margin-top:9px;color:#c4b5fd;font-size:.84rem;font-weight:700}
+@media(max-width:850px){.nav{flex-wrap:wrap}.nav-right{gap:12px}.nav-menu{display:none;position:absolute;top:72px;left:0;right:0;background:var(--surface);padding:22px;flex-direction:column;border-bottom:1px solid var(--border)}.nav-menu.open{display:flex}.hamburger{display:block}.telegram{padding:10px 12px;font-size:.82rem}.hero{padding-top:65px}}
+@media(max-width:430px){.brand-name{font-size:1.05rem}.logo{width:39px;height:39px}.telegram{font-size:0;width:42px;height:42px;padding:0}.telegram i{font-size:19px}.hero p{font-size:1rem}}
 </style>
 </head>
 
 <body>
 <header>
-  <nav class="nav">
-    <a class="brand" href="#home">
-      <span class="logo">B</span>
-      <span class="brand-name">BRUXHUB</span>
-    </a>
-
-    <div class="nav-right">
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#home">Главная</a></li>
-        <li><a href="#catalog">Каталог</a></li>
-        <li><a href="#news">Новости</a></li>
-        <li><a href="#about">О проекте</a></li>
-      </ul>
-
-      <a class="telegram" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-telegram"></i>
-        <span>Подписаться на канал</span>
-      </a>
-
-      <button class="hamburger" id="hamburgerBtn" aria-label="Открыть меню">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-  </nav>
+<nav class="nav">
+<a class="brand" href="#home"><span class="logo">B</span><span class="brand-name">BRUXHUB</span></a>
+<div class="nav-right">
+<ul class="nav-menu" id="navMenu">
+<li><a href="#home">Главная</a></li>
+<li><a href="#catalog">Каталог</a></li>
+<li><a href="#news">Новости</a></li>
+<li><a href="#about">О проекте</a></li>
+</ul>
+<a class="telegram" href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i><span>Подписаться на канал</span></a>
+<button class="hamburger" id="hamburgerBtn" aria-label="Открыть меню"><i class="fa-solid fa-bars"></i></button>
+</div>
+</nav>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="tag"><i class="fa-solid fa-bolt"></i> Игровой хаб сообщества</div>
-    <h1>BRUXHUB — ТВОЙ ИГРОВОЙ HUB</h1>
-    <p>Единая площадка для игровых проектов, приватных серверов, новостей и игровых возможностей.</p>
-    <a href="#catalog" class="primary">
-      <i class="fa-solid fa-gamepad"></i> Открыть каталог
-    </a>
-  </section>
+<section class="hero" id="home">
+<div class="tag"><i class="fa-solid fa-bolt"></i> Игровой хаб сообщества</div>
+<h1>BRUXHUB — ТВОЙ ИГРОВОЙ HUB</h1>
+<p>Единая площадка для игровых проектов, приватных серверов, новостей и игровых возможностей.</p>
+<a href="#catalog" class="primary"><i class="fa-solid fa-gamepad"></i> Открыть каталог</a>
+</section>
 
-  <section class="section" id="catalog">
-    <div class="section-head">
-      <h2 class="section-title">КАТАЛОГ ПРОЕКТОВ</h2>
-      <p class="section-desc">Выбирай интересующие проекты и переходи к материалам</p>
-    </div>
+<section class="section" id="catalog">
+<div class="section-head">
+<h2 class="section-title">КАТАЛОГ ПРОЕКТОВ</h2>
+<p class="section-desc">Выбирай проекты и переходи к материалам</p>
+</div>
+<div class="filters">
+<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="searchInput" type="search" placeholder="Поиск проектов или файлов..." autocomplete="off"></div>
+<div class="chips" id="categoryChips">
+<button class="chip active" data-cat="all">Все проекты</button>
+<button class="chip" data-cat="standoff">Standoff 2</button>
+<button class="chip" data-cat="privates">Приватные сервера</button>
+<button class="chip" data-cat="pc">PC (Скоро)</button>
+</div>
+</div>
+<div class="grid" id="catalogGrid" aria-live="polite"></div>
+</section>
 
-    <div class="filters">
-      <div class="search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input id="searchInput" type="search" placeholder="Поиск проектов или файлов..." autocomplete="off">
-      </div>
+<section class="section" id="news">
+<div class="section-head"><h2 class="section-title">НОВОСТИ И ОБНОВЛЕНИЯ</h2><p class="section-desc">Последние события сообщества</p></div>
+<div class="grid"><div class="empty"><i class="fa-solid fa-newspaper"></i><p>Скоро здесь появятся новости</p></div></div>
+</section>
 
-      <div class="chips" id="categoryChips">
-        <button class="chip active" data-cat="all">Все проекты</button>
-        <button class="chip" data-cat="standoff">Standoff 2</button>
-        <button class="chip" data-cat="privates">Приватные сервера</button>
-        <button class="chip" data-cat="pc">PC (Скоро)</button>
-      </div>
-    </div>
-
-    <div class="grid" id="catalogGrid" aria-live="polite"></div>
-  </section>
-
-  <section class="section" id="news">
-    <div class="section-head">
-      <h2 class="section-title">НОВОСТИ И ОБНОВЛЕНИЯ</h2>
-      <p class="section-desc">Последние события нашего игрового сообщества</p>
-    </div>
-    <div class="grid">
-      <div class="empty">
-        <i class="fa-solid fa-newspaper"></i>
-        <p>Скоро здесь появятся новости</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="section-head">
-      <h2 class="section-title">О ПРОЕКТЕ & FAQ</h2>
-      <p class="section-desc">Ответы на часто задаваемые вопросы</p>
-    </div>
-
-    <div class="faq">
-      <div class="faq-item">
-        <button class="faq-question">Что такое BRUXHUB?<i class="fa-solid fa-chevron-down"></i></button>
-        <div class="faq-answer">BRUXHUB — независимая площадка для игрового сообщества, проектов и новостей.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">Где следить за обновлениями?<i class="fa-solid fa-chevron-down"></i></button>
-        <div class="faq-answer">Новости публикуются в Telegram-канале <a href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">t.me/BruxHu</a>.</div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">BRUXHUB — официальный сайт Standoff 2?<i class="fa-solid fa-chevron-down"></i></button>
-        <div class="faq-answer">Нет. BRUXHUB — независимый фан-проект, не связанный с разработчиками Standoff 2.</div>
-      </div>
-    </div>
-  </section>
+<section class="section" id="about">
+<div class="section-head"><h2 class="section-title">О ПРОЕКТЕ & FAQ</h2><p class="section-desc">Ответы на часто задаваемые вопросы</p></div>
+<div class="faq">
+<div class="faq-item"><button class="faq-question">Что такое BRUXHUB?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-answer">BRUXHUB — независимая площадка для игрового сообщества, проектов и новостей.</div></div>
+<div class="faq-item"><button class="faq-question">Где следить за обновлениями?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-answer">Новости публикуются в Telegram-канале <a href="https://t.me/BruxHu" target="_blank" rel="noopener noreferrer">t.me/BruxHu</a>.</div></div>
+<div class="faq-item"><button class="faq-question">BRUXHUB — официальный сайт Standoff 2?<i class="fa-solid fa-chevron-down"></i></button><div class="faq-answer">Нет. BRUXHUB — независимый фан-проект.</div></div>
+</div>
+</section>
 </main>
 
 <footer>
-  <p>BRUXHUB — игровой хаб сообщества</p>
-  <p>Проверяйте файлы и ссылки перед скачиванием.</p>
-  <div class="credit">By the Icovenaca</div>
+<p>BRUXHUB — игровой хаб сообщества</p>
+<p>Проверяйте файлы и ссылки перед скачиванием.</p>
+<div class="credit">By the Icovenaca</div>
 </footer>
 
 <script>
-const DRIVE_URL =
-  "https://drive.google.com/file/d/1kCkMZdMiL0bYfXGTNaZVHkaXOjnX9aqC/view?usp=drivesdk";
+const DRIVE_URL = "https://drive.google.com/uc?export=download&id=1kCkMZdMiL0bYfXGTNaZVHkaXOjnX9aqC";
 
-/*
-  Вставь настоящие ссылки на приватки вместо пустых строк.
-  Например:
-  standknaif: "https://..."
-*/
+/* Вставь реальные ссылки на приватки вместо пустых строк */
 const privateLinks = {
   standknaif: "",
   standleo: "",
@@ -319,32 +151,32 @@ const privateLinks = {
 
 const projects = [
   {
-    title: "Standoff 2",
-    category: "standoff",
-    badge: "Standoff 2",
-    icon: "fa-crosshairs",
-    description: "Файл и материалы для Standoff 2. Нажми кнопку, чтобы открыть Google Drive.",
-    features: ["Скачать через Google Drive", "Ссылка на файл"],
-    type: "download",
-    url: DRIVE_URL
+    title:"Standoff 2",
+    category:"standoff",
+    badge:"Standoff 2",
+    icon:"fa-crosshairs",
+    description:"Нажми «Скачать», чтобы открыть загрузку файла через Google Drive.",
+    features:["Скачать через Google Drive"],
+    type:"download",
+    url:DRIVE_URL
   },
   {
-    title: "Приватные серверы",
-    category: "privates",
-    badge: "3 проекта",
-    icon: "fa-server",
-    description: "Выбирай приватный сервер и переходи по его ссылке.",
-    features: ["Standknaif", "Standleo", "Standrise"],
-    type: "privates"
+    title:"Приватные серверы",
+    category:"privates",
+    badge:"3 проекта",
+    icon:"fa-server",
+    description:"Выбери приватный сервер и перейди на его страницу.",
+    features:["Standknaif","Standleo","Standrise"],
+    type:"privates"
   },
   {
-    title: "PC-проекты",
-    category: "pc",
-    badge: "Скоро",
-    icon: "fa-desktop",
-    description: "Раздел компьютерных игровых проектов. Материалы появятся позже.",
-    features: ["Раздел готовится к запуску"],
-    type: "soon"
+    title:"PC-проекты",
+    category:"pc",
+    badge:"Скоро",
+    icon:"fa-desktop",
+    description:"Раздел компьютерных игровых проектов. Материалы появятся позже.",
+    features:["Раздел готовится к запуску"],
+    type:"soon"
   }
 ];
 
@@ -355,75 +187,45 @@ let activeCategory = "all";
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[char]));
 }
 
 function makeActions(project) {
   if (project.type === "download") {
-    return `
-      <a class="download" href="${escapeHtml(project.url)}"
-         target="_blank" rel="noopener noreferrer">
-        <i class="fa-solid fa-download"></i> Скачать
-      </a>`;
+    return `<a class="download" href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-download"></i> Скачать
+    </a>`;
   }
 
   if (project.type === "privates") {
     const servers = [
-      {key:"standknaif", name:"Standknaif"},
-      {key:"standleo", name:"Standleo"},
-      {key:"standrise", name:"Standrise"}
+      {key:"standknaif",name:"Standknaif"},
+      {key:"standleo",name:"Standleo"},
+      {key:"standrise",name:"Standrise"}
     ];
 
-    return `
-      <div class="server-links">
-        ${servers.map(server => {
-          const url = privateLinks[server.key];
-          return url
-            ? `<a class="server-link" href="${escapeHtml(url)}"
-                 target="_blank" rel="noopener noreferrer">
-                 <span>${server.name}</span><span>Перейти ↗</span>
-               </a>`
-            : `<a class="server-link" href="#"
-                 data-missing="${server.key}">
-                 <span>${server.name}</span><span>Добавить ссылку</span>
-               </a>`;
-        }).join("")}
-      </div>`;
+    return `<div class="server-links">${servers.map(server => {
+      const url = privateLinks[server.key];
+      return url
+        ? `<a class="server-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"><span>${server.name}</span><span>Перейти ↗</span></a>`
+        : `<a class="server-link" href="#" data-missing="${server.key}"><span>${server.name}</span><span>Ссылка скоро</span></a>`;
+    }).join("")}</div>`;
   }
 
-  return `
-    <div class="download" style="opacity:.65;cursor:default">
-      <i class="fa-solid fa-clock"></i> Скоро
-    </div>`;
+  return `<div class="download" style="opacity:.65;cursor:default"><i class="fa-solid fa-clock"></i> Скоро</div>`;
 }
 
 function renderProjects() {
   const query = searchInput.value.trim().toLocaleLowerCase("ru");
-
   const filtered = projects.filter(project => {
-    const categoryMatch =
-      activeCategory === "all" || project.category === activeCategory;
-    const text = [
-      project.title,
-      project.badge,
-      project.description,
-      ...project.features
-    ].join(" ").toLocaleLowerCase("ru");
-
+    const categoryMatch = activeCategory === "all" || project.category === activeCategory;
+    const text = [project.title,project.badge,project.description,...project.features].join(" ").toLocaleLowerCase("ru");
     return categoryMatch && text.includes(query);
   });
 
   if (!filtered.length) {
-    grid.innerHTML = `
-      <div class="empty">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <p>Ничего не найдено. Попробуй изменить запрос или категорию.</p>
-      </div>`;
+    grid.innerHTML = `<div class="empty"><i class="fa-solid fa-magnifying-glass"></i><p>Ничего не найдено. Попробуй изменить запрос или категорию.</p></div>`;
     return;
   }
 
@@ -432,21 +234,11 @@ function renderProjects() {
       <div>
         <div class="card-top">
           <div class="card-icon"><i class="fa-solid ${project.icon}"></i></div>
-          <div>
-            <h3>${escapeHtml(project.title)}</h3>
-            <span class="badge">${escapeHtml(project.badge)}</span>
-          </div>
+          <div><h3>${escapeHtml(project.title)}</h3><span class="badge">${escapeHtml(project.badge)}</span></div>
         </div>
-
         <p class="desc">${escapeHtml(project.description)}</p>
-
-        <ul class="features">
-          ${project.features.map(feature => `
-            <li><i class="fa-solid fa-check"></i>${escapeHtml(feature)}</li>
-          `).join("")}
-        </ul>
+        <ul class="features">${project.features.map(feature => `<li><i class="fa-solid fa-check"></i>${escapeHtml(feature)}</li>`).join("")}</ul>
       </div>
-
       <div class="actions">${makeActions(project)}</div>
     </article>
   `).join("");
@@ -457,28 +249,17 @@ searchInput.addEventListener("input", renderProjects);
 chips.addEventListener("click", event => {
   const button = event.target.closest("button[data-cat]");
   if (!button) return;
-
   activeCategory = button.dataset.cat;
-  chips.querySelectorAll(".chip").forEach(chip => {
-    chip.classList.toggle("active", chip === button);
-  });
-
+  chips.querySelectorAll(".chip").forEach(chip => chip.classList.toggle("active",chip === button));
   renderProjects();
 });
 
 grid.addEventListener("click", event => {
   const link = event.target.closest("[data-missing]");
   if (!link) return;
-
   event.preventDefault();
-  const names = {
-    standknaif: "Standknaif",
-    standleo: "Standleo",
-    standrise: "Standrise"
-  };
-
-  alert("Ссылка на " + names[link.dataset.missing] +
-        " ещё не добавлена. Вставь её в объект privateLinks в коде.");
+  const names = {standknaif:"Standknaif",standleo:"Standleo",standrise:"Standrise"};
+  alert("Ссылка на " + names[link.dataset.missing] + " пока не добавлена в код.");
 });
 
 document.getElementById("hamburgerBtn").addEventListener("click", () => {
@@ -486,15 +267,11 @@ document.getElementById("hamburgerBtn").addEventListener("click", () => {
 });
 
 document.querySelectorAll("#navMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("navMenu").classList.remove("open");
-  });
+  link.addEventListener("click", () => document.getElementById("navMenu").classList.remove("open"));
 });
 
 document.querySelectorAll(".faq-question").forEach(button => {
-  button.addEventListener("click", () => {
-    button.closest(".faq-item").classList.toggle("open");
-  });
+  button.addEventListener("click", () => button.closest(".faq-item").classList.toggle("open"));
 });
 
 renderProjects();
